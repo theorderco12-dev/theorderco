@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Order Co. — Wireframe</title>
+<style>
+  :root { --line:#999; --muted:#666; --bg:#fafafa; --note:#fff8d6; --noteline:#e0c860; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system, "Apple SD Gothic Neo", sans-serif; color:#222; background:var(--bg); line-height:1.5; }
+  a { color:inherit; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 16px; }
+
+  /* 와이어프레임 공통 */
+  .box { border:1.5px dashed var(--line); background:#fff; padding:16px; }
+  .ph { background:repeating-linear-gradient(45deg,#eee,#eee 10px,#e4e4e4 10px,#e4e4e4 20px); border:1px solid #ccc; color:var(--muted); display:flex; align-items:center; justify-content:center; text-align:center; font-size:13px; }
+  .note { background:var(--note); border-left:4px solid var(--noteline); padding:8px 12px; font-size:13px; margin:0 0 20px; }
+  .note b { margin-right:6px; }
+  .tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; background:#222; color:#fff; padding:2px 8px; margin-bottom:8px; }
+  section { padding:56px 0; border-bottom:2px solid #ddd; }
+  h2 { margin:0 0 8px; font-size:26px; }
+  .grid { display:grid; gap:16px; }
+  .g3 { grid-template-columns:repeat(3,1fr); }
+  @media (max-width:800px){ .g3 { grid-template-columns:1fr; } .menu { display:none; } }
+
+  /* Header */
+  header { position:sticky; top:0; z-index:10; background:#fff; border-bottom:1.5px dashed var(--line); }
+  header .wrap { display:flex; align-items:center; gap:16px; height:60px; }
+  .logo { border:1.5px solid #222; padding:4px 10px; font-weight:700; font-size:14px; }
+  .menu { display:flex; gap:18px; margin-left:auto; font-size:14px; }
+  .menu a { text-decoration:none; }
+  .lang button { border:1px solid #999; background:#fff; padding:3px 8px; cursor:pointer; font-size:12px; }
+  .lang button.on { background:#222; color:#fff; }
+  .quick { font-size:12px; border:1px solid #999; padding:4px 8px; }
+
+  /* Hero */
+  .hero .video { height:320px; margin-bottom:20px; }
+  .hero h1 { font-size:32px; margin:0 0 6px; }
+  .badges .box { text-align:center; }
+  .num { font-size:30px; font-weight:800; }
+
+  /* Brands hover */
+  .brands { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .brand { position:relative; border:1px solid #999; padding:6px 12px; font-size:13px; cursor:default; background:#fff; }
+  .brand .reveal { display:none; position:absolute; left:0; top:110%; width:200px; height:90px; z-index:5; }
+  .brand:hover .reveal { display:flex; }
+
+  /* Map */
+  .map { position:relative; height:380px; }
+  .pin { position:absolute; transform:translate(-50%,-50%); }
+  .pin .dot { width:14px; height:14px; border-radius:50%; background:#222; border:3px solid #fff; outline:1px solid #222; cursor:pointer; }
+  .pin .label { font-size:11px; font-weight:700; white-space:nowrap; position:absolute; top:16px; left:50%; transform:translateX(-50%); }
+  .pin .pop { display:none; position:absolute; bottom:22px; left:50%; transform:translateX(-50%); width:220px; background:#fff; border:1.5px solid #222; padding:8px 10px; font-size:12px; z-index:5; }
+  .pin:hover .pop { display:block; }
+  .pin.seoul .dot { background:#c33; }
+
+  /* Steps */
+  .step .n { font-size:12px; font-weight:700; color:var(--muted); }
+
+  /* Contact */
+  .cta { display:block; border:1.5px solid #222; padding:14px; text-align:center; font-weight:700; text-decoration:none; background:#fff; }
+  .cta.wa { animation:pulse 2s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(0,0,0,.35);} 70%{box-shadow:0 0 0 12px rgba(0,0,0,0);} 100%{box-shadow:0 0 0 0 rgba(0,0,0,0);} }
+  form { display:grid; gap:10px; grid-template-columns:1fr 1fr; margin-top:24px; }
+  form .full { grid-column:1/-1; }
+  input, select, textarea { width:100%; padding:8px; border:1px solid #999; font:inherit; }
+  form button { grid-column:1/-1; padding:12px; border:1.5px solid #222; background:#222; color:#fff; font-weight:700; cursor:pointer; }
+
+  .fab { position:fixed; right:20px; bottom:20px; width:72px; height:72px; border-radius:50%; border:2px solid #222; background:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; text-align:center; text-decoration:none; z-index:20; }
+  footer { padding:24px 0 100px; font-size:12px; color:var(--muted); }
+
+  /* 언어 토글 */
+  [data-l="en"] { display:none; }
+  body.en [data-l="kr"] { display:none; }
+  body.en [data-l="en"] { display:revert; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap">
+    <div class="logo">THE ORDER Co., LTD. <span style="font-weight:400;color:#888">(골드 엠보싱 로고)</span></div>
+    <nav class="menu">
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#global">Global Reach</a>
+      <a href="#trust">Trust</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+    <div class="lang"><button class="on" data-set="kr">KR</button><button data-set="en">EN</button></div>
+    <span class="quick">WA · LINE</span>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <span class="tag">SECTION 1 · HERO</span>
+    <p class="note"><b>목적</b>접속 즉시 "하이엔드 시계 수출 전문 기업" 인지 + 거래 규모로 신뢰 형성</p>
+    <div class="video ph">[ 배경 앰비언트 비디오 ]<br>시계 무브먼트 / 디테일 클로즈업 루프</div>
+    <h1 data-l="en">Connecting World-Class Timepieces to Global Markets.</h1>
+    <h1 data-l="kr">대한민국을 넘어 전 세계로 연결되는<br>하이엔드 타임피스 수출 전문 기업</h1>
+    <div class="grid g3 badges" style="margin-top:24px">
+      <div class="box"><div>📊 Annual Volume</div><div class="num">$<span class="count" data-to="50">0</span>M+</div><small>누적 거래액 (수치 미정: XX)</small></div>
+      <div class="box"><div>🌐 Export Reach</div><div class="num"><span class="count" data-to="10">0</span>+</div><small>Countries</small></div>
+      <div class="box"><div>⌚ Core Brands</div><div class="num">5</div><small>브랜드에 마우스 오버 →</small></div>
+    </div>
+    <div class="brands">
+      <span class="brand">ROLEX<span class="reveal ph">대표 라인업 그래픽<br>(Submariner 등)</span></span>
+      <span class="brand">PATEK PHILIPPE<span class="reveal ph">대표 라인업 그래픽<br>(Nautilus 등)</span></span>
+      <span class="brand">AUDEMARS PIGUET<span class="reveal ph">대표 라인업 그래픽<br>(Royal Oak 등)</span></span>
+      <span class="brand">OMEGA<span class="reveal ph">대표 라인업 그래픽</span></span>
+      <span class="brand">TUDOR<span class="reveal ph">대표 라인업 그래픽</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <span class="tag">SECTION 2 · ABOUT US</span>
+    <p class="note"><b>목적</b>국내외 매입/매출 거래처에게 회사의 전문성과 정체성 제시</p>
+    <h2>한국의 안정적이고 풍부한 하이엔드 시계 물량을<br>글로벌 파트너에게 신속하고 안전하게 공급합니다.</h2>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="box"><div class="ph" style="height:80px;margin-bottom:10px">아이콘</div><b>Strict Authenticity Verification</b><p>100% 정품 감정 및 검증 시스템</p></div>
+      <div class="box"><div class="ph" style="height:80px;margin-bottom:10px">아이콘</div><b>Global Logistics &amp; Duty Refund</b><p>영세율 기반의 효율적이고 정당한 수출 프로세스</p></div>
+      <div class="box"><div class="ph" style="height:80px;margin-bottom:10px">아이콘</div><b>Direct Liquidity &amp; Quick Payment</b><p>즉시 매입 및 신속한 결제 정산 시스템</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. TARGET USER -->
+<section id="services">
+  <div class="wrap">
+    <span class="tag">SECTION 3 · TARGET USER SOLUTIONS</span>
+    <p class="note"><b>목적</b>방문자 유형(해외 바이어 / 국내 거래처 / 개인 매도자)별로 자기에게 맞는 경로로 즉시 이동</p>
+    <h2>어떤 파트너이신가요?</h2>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="box"><b>For Global Buyers</b><br><small>해외 B2B 파트너</small>
+        <ul><li>하이엔드 모델 재고 수급</li><li>맞춤형 수출 핸드캐리</li><li>WhatsApp 1:1 직통 연결</li></ul>
+        <a class="cta" href="#contact">→ WhatsApp 연결</a></div>
+      <div class="box"><b>For Local Merchants</b><br><small>국내 매입/공급 거래처</small>
+        <ul><li>안정적인 단체/기업 매입</li><li>합리적 단가 정산</li><li>영세율/세금계산서 발행</li></ul>
+        <a class="cta" href="#contact">→ 매입 의뢰 폼</a></div>
+      <div class="box"><b>For Individual Sellers</b><br><small>개인 고객 매입 문의</small>
+        <ul><li>보유 명품 시계 최고가 매입 및 정산</li><li>보안 및 비공개 거래</li></ul>
+        <a class="cta" href="#contact">→ 매입 문의</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. GLOBAL NETWORK -->
+<section id="global">
+  <div class="wrap">
+    <span class="tag">SECTION 4 · GLOBAL NETWORK</span>
+    <p class="note"><b>목적</b>활성화된 수출 경로를 시각화 — 거점에 마우스 오버 시 거래 특징/물류 팝업</p>
+    <h2>Global Reach</h2>
+    <div class="map ph" style="margin-top:16px">
+      <span style="position:absolute;top:10px;left:10px">[ 인터랙티브 세계지도 ]</span>
+      <div class="pin seoul" style="left:80%;top:38%"><div class="dot"></div><span class="label">SEOUL (HQ)</span><div class="pop"><b>본사 / 출고 거점</b><br>모든 수출 물량의 출발지</div></div>
+      <div class="pin" style="left:86%;top:40%"><div class="dot"></div><span class="label">JAPAN</span><div class="pop"><b>Japan</b><br>거래 특징: (작성 필요)<br>물류: (작성 필요)</div></div>
+      <div class="pin" style="left:77%;top:50%"><div class="dot"></div><span class="label">HONG KONG</span><div class="pop"><b>Hong Kong</b><br>거래 특징: (작성 필요)<br>물류: (작성 필요)</div></div>
+      <div class="pin" style="left:75%;top:64%"><div class="dot"></div><span class="label">SINGAPORE</span><div class="pop"><b>Singapore</b><br>거래 특징: (작성 필요)<br>물류: (작성 필요)</div></div>
+      <div class="pin" style="left:61%;top:50%"><div class="dot"></div><span class="label">DUBAI</span><div class="pop"><b>Dubai</b><br>거래 특징: (작성 필요)<br>물류: (작성 필요)</div></div>
+      <div class="pin" style="left:12%;top:42%"><div class="dot"></div><span class="label">SAN FRANCISCO</span><div class="pop"><b>USA · San Francisco</b><br>거래 특징: (작성 필요)<br>물류: (작성 필요)</div></div>
+      <div class="pin" style="left:25%;top:40%"><div class="dot"></div><span class="label">USA (East)</span><div class="pop"><b>USA</b><br>거래 특징: (작성 필요)<br>물류: (작성 필요)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. TRUST -->
+<section id="trust">
+  <div class="wrap">
+    <span class="tag">SECTION 5 · TRUST &amp; SECURITY</span>
+    <p class="note"><b>목적</b>B2B 거래의 핵심 불안요소(정품 여부, 대금 지급, 보안) 해소</p>
+    <h2>정품 보증 &amp; 안전 거래 프로세스</h2>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="box step"><div class="n">STEP 1</div><b>다중 정품 검증</b><p>전문 감정사의 Serial Check, Movement Inspection</p></div>
+      <div class="box step"><div class="n">STEP 2</div><b>안전 보관 &amp; 특수 패키징</b><p>보안 보관 및 특수 물류 패키징</p></div>
+      <div class="box step"><div class="n">STEP 3</div><b>인보이스 &amp; 투명한 정산</b><p>인보이스 발행 및 투명한 정산 절차</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <span class="tag">SECTION 6 · CONTACT &amp; INQUIRY</span>
+    <p class="note"><b>목적</b>전환율 극대화 — 채널별 즉시 연결 + 공식 제안 수신</p>
+    <h2>Let's Talk Business</h2>
+    <div class="grid g3" style="margin-top:24px">
+      <a class="cta wa" href="#">💬 Start Live Chat on WhatsApp<br><small style="font-weight:400">해외 B2B 바이어 · Pulse 효과</small></a>
+      <a class="cta" href="#">🟢 Connect via LINE<br><small style="font-weight:400">아시아권 파트너</small></a>
+      <a class="cta" href="#">✉️ Send Official B2B Proposal<br><small style="font-weight:400">콜드메일 / 공식 제안서</small></a>
+    </div>
+    <form onsubmit="event.preventDefault();alert('와이어프레임: 전송 기능 없음')">
+      <input placeholder="성함">
+      <input placeholder="회사명">
+      <input placeholder="연락처">
+      <select><option>문의 유형 선택</option><option>해외 구매 제안</option><option>국내 매입 의뢰</option><option>기타</option></select>
+      <textarea class="full" rows="4" placeholder="메시지"></textarea>
+      <button>문의 보내기</button>
+    </form>
+  </div>
+</section>
+
+<footer><div class="wrap">주식회사 디오더컴퍼니 (The Order Co., LTD.) · 사업자정보 / 주소 / 연락처 (작성 필요)</div></footer>
+
+<a class="fab" href="#contact">Quick<br>Inquiry<br>(WA)</a>
+
+<script>
+  // 언어 스위처 (KR/EN)
+  document.querySelectorAll('.lang button').forEach(b => b.onclick = () => {
+    document.body.classList.toggle('en', b.dataset.set === 'en');
+    document.querySelectorAll('.lang button').forEach(x => x.classList.toggle('on', x === b));
+  });
+  // 스크롤 진입 시 카운터 애니메이션
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, to = +el.dataset.to, t0 = performance.now();
+    (function tick(t){ const p = Math.min((t - t0) / 1500, 1); el.textContent = Math.round(to * p * p); if (p < 1) requestAnimationFrame(tick); })(t0);
+    io.unobserve(el);
+  }));
+  document.querySelectorAll('.count').forEach(c => io.observe(c));
+</script>
+</body>
+</html>
