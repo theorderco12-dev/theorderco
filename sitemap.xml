@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://theorderco.co.kr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theorderco.co.kr/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://theorderco.co.kr/ko/" />
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://theorderco.co.kr/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theorderco.co.kr/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://theorderco.co.kr/ko/" />
+    <lastmod>2026-10-07</lastmod>
+  </url>
+</urlset>
