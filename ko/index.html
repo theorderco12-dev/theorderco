@@ -1626,7 +1626,9 @@
         if (!btn || !hero) return;
         const narrow = window.matchMedia("(max-width: 760px)");
         let heroVisible = true;
-        const apply = () => btn.classList.toggle("is-hidden", narrow.matches && heroVisible);
+        // On phones the contact section and footer already list every channel; keep the FABs from covering them.
+        const ends = new Set();
+        const apply = () => btn.classList.toggle("is-hidden", narrow.matches && (heroVisible || ends.size > 0));
         new IntersectionObserver(
           ([e]) => {
             heroVisible = e.intersectionRatio > 0.25;
@@ -1634,6 +1636,11 @@
           },
           { threshold: [0, 0.25, 0.5] },
         ).observe(hero);
+        const endObs = new IntersectionObserver((entries) => {
+          entries.forEach((e) => (e.isIntersecting ? ends.add(e.target) : ends.delete(e.target)));
+          apply();
+        });
+        ["#contact .grid", ".footer"].forEach((s) => $(s) && endObs.observe($(s)));
         narrow.addEventListener("change", apply);
       }
       function compose() {

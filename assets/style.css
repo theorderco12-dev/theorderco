@@ -2075,3 +2075,23 @@ nav[data-astro-cid-jo6i4kqk] a[data-astro-cid-jo6i4kqk]:hover {
   opacity: 1;
   transform: translate(0, -50%);
 }
+
+@media (width <= 560px) {
+  .fab-stack[data-astro-cid-jo6i4kqk] {
+    gap: 0.6rem;
+  }
+
+  .fab[data-astro-cid-jo6i4kqk] {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .fab[data-astro-cid-jo6i4kqk] .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .fab-label[data-astro-cid-jo6i4kqk] {
+    display: none;
+  }
+}
